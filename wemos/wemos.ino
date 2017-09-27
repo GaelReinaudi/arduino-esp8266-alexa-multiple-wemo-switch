@@ -5,6 +5,7 @@
 #include "Switch.h"
 #include "UpnpBroadcastResponder.h"
 #include "CallbackFunction.h"
+#include "SSID_PASSWORD.h"
 
 // prototypes
 boolean connectWifi();
@@ -16,8 +17,8 @@ void kitchenLightsOn();
 void kitchenLightsOff();
 
 // Change this before you flash
-const char* ssid = "Aruna";
-const char* password = "*****";
+const char* ssid = SSID;
+const char* password = PASSWORD;
 
 boolean wifiConnected = false;
 
@@ -28,7 +29,7 @@ Switch *kitchen = NULL;
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
    
   // Initialise wifi connection
   wifiConnected = connectWifi();
