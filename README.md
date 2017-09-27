@@ -1,6 +1,6 @@
-#Arduino Esp8266 Alexa Multiple Belkin wemo switch emulator
+#Arduino Esp8266 Alexa controlled oller blinds
 
-This project supports emulating upto 14 belkin wemo switches using 1 ESP 8266  chip.
+This project is completly based on the [forked repo](https://github.com/kakopappa/arduino-esp8266-alexa-multiple-wemo-switch), all the hard work was done by kakopappa. I am adding supprt for stepper motors controlling roller blinds
 
 Parts you need:
 
@@ -15,21 +15,12 @@ How to use:
 3. Flash 
 4. Enjoy
 
-## Do you want to turn on / off your TV, AirCon (AC) using Amazon Alexa? Checkout my latest project https://irdevkit.com/
-
-Previous post on single wemo switch
-https://github.com/kakopappa/arduino-esp8266-alexa-wemo-switch/edit/master/README.md
-
 
 ### Articles about the Wemos switch
 * [monkeytypewritr](https://medium.com/@monkeytypewritr/amazon-echo-esp8266-iot-a42076daafa5#.oc4od1xa0)
 
-
 ### Credits
 
-- makermusings - [GitHub](https://github.com/makermusings/fauxmo)
+- kakopappa - [forked repo](https://github.com/kakopappa/arduino-esp8266-alexa-multiple-wemo-switch)
 
-### Developed By
 
-* Aruna Tennakoon
- * [paypal.me/arunat](http://paypal.me/arunat)
