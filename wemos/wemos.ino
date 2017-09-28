@@ -6,6 +6,7 @@
 #include "UpnpBroadcastResponder.h"
 #include "CallbackFunction.h"
 #include "SSID_PASSWORD.h"
+#include "rollerBlinds.h"
 
 // prototypes
 boolean connectWifi();
