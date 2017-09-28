@@ -32,6 +32,7 @@ void setup()
 {
   Serial.begin(115200);
   delay(100);
+  pinMode(LED_BUILTIN, OUTPUT);
    
   // Initialise wifi connection
   wifiConnected = connectWifi();
@@ -66,11 +67,13 @@ void loop()
 }
 
 void officeLightsOn() {
-    Serial.print("Switch 1 turn on ...");
+  Serial.print("Switch 1 turn on ...");
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void officeLightsOff() {
-    Serial.print("Switch 1 turn off ...");
+  Serial.print("Switch 1 turn off ...");
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void kitchenLightsOn() {
