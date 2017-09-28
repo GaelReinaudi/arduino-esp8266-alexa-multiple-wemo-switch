@@ -30,11 +30,12 @@ Switch *kitchen = NULL;
 void setup()
 {
   Serial.begin(115200);
+  delay(100);
    
   // Initialise wifi connection
   wifiConnected = connectWifi();
   
-  if(wifiConnected){
+  if(wifiConnected) {
     upnpBroadcastResponder.beginUdpMulticast();
     
     // Define your switches here. Max 14
@@ -45,6 +46,11 @@ void setup()
     Serial.println("Adding switches upnp broadcast responder");
     upnpBroadcastResponder.addDevice(*office);
     upnpBroadcastResponder.addDevice(*kitchen);
+  }
+  else {
+    Serial.println("Cannot connect to wifi. Restarting...");
+    delay(100);
+    ESP.restart();
   }
 }
  
