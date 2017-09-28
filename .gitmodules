@@ -1,0 +1,3 @@
+[submodule "wemos/AccelStepper"]
+	path = wemos/AccelStepper
+	url = https://github.com/waspinator/AccelStepper
