@@ -27,6 +27,7 @@ UpnpBroadcastResponder upnpBroadcastResponder;
 
 Switch *office = NULL;
 Switch *kitchen = NULL;
+RollerBlinds *rollerBlinds = 0;
 
 void setup()
 {
@@ -54,6 +55,7 @@ void setup()
     delay(100);
     ESP.restart();
   }
+  rollerBlinds = new RollerBlinds(16, 5, 4, 0);
 }
  
 void loop()
@@ -64,6 +66,7 @@ void loop()
       kitchen->serverLoop();
       office->serverLoop();
 	 }
+   rollerBlinds->loop();
 }
 
 void officeLightsOn() {
