@@ -27,13 +27,13 @@ UpnpBroadcastResponder upnpBroadcastResponder;
 
 Switch *office = NULL;
 Switch *kitchen = NULL;
-RollerBlinds *rollerBlinds = 0;
+RollerBlinds *rollerBlinds1 = 0;
+RollerBlinds *rollerBlinds2 = 0;
 
 void setup()
 {
   Serial.begin(115200);
   delay(100);
-  pinMode(LED_BUILTIN, OUTPUT);
    
   // Initialise wifi connection
   wifiConnected = connectWifi();
@@ -43,7 +43,7 @@ void setup()
     
     // Define your switches here. Max 14
     // Format: Alexa invocation name, local port no, on callback, off callback
-    office = new Switch("office lights", 80, officeLightsOn, officeLightsOff);
+    office = new Switch("blinds", 80, officeLightsOn, officeLightsOff);
     kitchen = new Switch("kitchen lights", 81, kitchenLightsOn, kitchenLightsOff);
 
     Serial.println("Adding switches upnp broadcast responder");
@@ -55,7 +55,8 @@ void setup()
     delay(100);
     ESP.restart();
   }
-  rollerBlinds = new RollerBlinds(16, 5, 4, 0);
+  rollerBlinds1 = new RollerBlinds(16, 5, 4, 0);
+  rollerBlinds2 = 0;//new RollerBlinds(16, 5, 4, 0);
 }
  
 void loop()
@@ -66,17 +67,17 @@ void loop()
       kitchen->serverLoop();
       office->serverLoop();
 	 }
-   rollerBlinds->loop();
+   rollerBlinds1->loop();
 }
 
 void officeLightsOn() {
-  Serial.print("Switch 1 turn on ...");
-  digitalWrite(LED_BUILTIN, LOW);
+    Serial.print("Switch 1 turn on ...");
+    rollerBlinds1->goDown();
 }
 
 void officeLightsOff() {
-  Serial.print("Switch 1 turn off ...");
-  digitalWrite(LED_BUILTIN, HIGH);
+    Serial.print("Switch 1 turn off ...");
+    rollerBlinds1->goUp();
 }
 
 void kitchenLightsOn() {
