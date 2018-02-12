@@ -28,6 +28,6 @@ class RollerBlinds
   private:
     AccelStepper stepper;
     int posFullUp = 0;
-    int posFullDown = -35000;
+    int posFullDown = 37000;
 };
 

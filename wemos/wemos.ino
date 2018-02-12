@@ -43,8 +43,8 @@ void setup()
     
     // Define your switches here. Max 14
     // Format: Alexa invocation name, local port no, on callback, off callback
-    office = new Switch("blinds", 80, officeLightsOn, officeLightsOff);
-    kitchen = new Switch("kitchen lights", 81, kitchenLightsOn, kitchenLightsOff);
+    office = new Switch("bedroom blinds", 80, officeLightsOn, officeLightsOff);
+    kitchen = new Switch("garage lights", 81, kitchenLightsOn, kitchenLightsOff);
 
     Serial.println("Adding switches upnp broadcast responder");
     upnpBroadcastResponder.addDevice(*office);
