@@ -9,5 +9,5 @@
   void RollerBlinds::goUp() {
     stepper.enableOutputs();
     delay(100);
-    stepper.moveTo(0);   
+    stepper.moveTo(posFullUp);   
   }

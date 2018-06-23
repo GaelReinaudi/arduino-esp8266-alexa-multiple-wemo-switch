@@ -44,11 +44,13 @@ void setup()
     // Define your switches here. Max 14
     // Format: Alexa invocation name, local port no, on callback, off callback
     office = new Switch("bedroom blinds", 80, officeLightsOn, officeLightsOff);
-    kitchen = new Switch("garage lights", 81, kitchenLightsOn, kitchenLightsOff);
+//    office = new Switch("livingroom blinds", 80, officeLightsOn, officeLightsOff);
+//    office = new Switch("les stores de la chambre", 80, officeLightsOn, officeLightsOff);
+//    office = new Switch("les stores du salon", 80, officeLightsOn, officeLightsOff);
 
     Serial.println("Adding switches upnp broadcast responder");
     upnpBroadcastResponder.addDevice(*office);
-    upnpBroadcastResponder.addDevice(*kitchen);
+//    upnpBroadcastResponder.addDevice(*kitchen);
   }
   else {
     Serial.println("Cannot connect to wifi. Restarting...");
@@ -64,7 +66,7 @@ void loop()
 	 if(wifiConnected){
       upnpBroadcastResponder.serverLoop();
       
-      kitchen->serverLoop();
+//      kitchen->serverLoop();
       office->serverLoop();
 	 }
    rollerBlinds1->loop();
