@@ -28,7 +28,6 @@ UpnpBroadcastResponder upnpBroadcastResponder;
 Switch *office = NULL;
 Switch *kitchen = NULL;
 RollerBlinds *rollerBlinds1 = 0;
-RollerBlinds *rollerBlinds2 = 0;
 
 void setup()
 {
@@ -58,7 +57,6 @@ void setup()
     ESP.restart();
   }
   rollerBlinds1 = new RollerBlinds(16, 5, 4, 0);
-  rollerBlinds2 = 0;//new RollerBlinds(16, 5, 4, 0);
 }
  
 void loop()
