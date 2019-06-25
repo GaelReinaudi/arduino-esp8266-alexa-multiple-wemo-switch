@@ -86,10 +86,12 @@ void firstLightChanged(uint8_t brightness) {
     //EXAMPLE
     if (brightness == 255) {
       Serial.println("ON");
+      Serial.println(brightness);
       rollerBlinds1->goDown();
     }
     else if (brightness == 0) {
       Serial.println("OFF");
+      Serial.println(brightness);
       rollerBlinds1->goUp();
     }
     else {
