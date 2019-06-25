@@ -1,19 +1,14 @@
 /*
- * This is an example on how to use Espalexa alongside an ESPAsyncWebServer.
- */
- 
-#define ESPALEXA_ASYNC //it is important to define this before #include <Espalexa.h>!
+ * This is an example on how to use Espalexa alongside an ESP8266WebServer.
+ */ 
 #include <Espalexa.h>
-
-#ifdef ARDUINO_ARCH_ESP32
+ #ifdef ARDUINO_ARCH_ESP32
 #include <WiFi.h>
-#include <AsyncTCP.h>
+#include <WebServer.h> //if you get an error here please update to ESP32 arduino core 1.0.0
 #else
 #include <ESP8266WiFi.h>
-#include <ESPAsyncTCP.h>
+#include <ESP8266WebServer.h>
 #endif
-#include <ESPAsyncWebServer.h>
-
 #include "SSID_PASSWORD.h"
 #include "rollerBlinds.h"
 
@@ -31,8 +26,11 @@ boolean wifiConnected = false;
 RollerBlinds *rollerBlinds1 = 0;
 
 Espalexa espalexa;
-AsyncWebServer server(80);
-
+#ifdef ARDUINO_ARCH_ESP32
+WebServer server(80);
+#else
+ESP8266WebServer server(80);
+#endif
 
 void setup()
 {
@@ -41,17 +39,17 @@ void setup()
   wifiConnected = connectWifi();
   
   if(wifiConnected){
-    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-      request->send(200, "text/plain", "This is an example index page your server may send.");
+    server.on("/", HTTP_GET, [](){
+    server.send(200, "text/plain", "This is an example index page your server may send.");
     });
-    server.on("/test", HTTP_GET, [](AsyncWebServerRequest *request){
-      request->send(200, "text/plain", "This is a second subpage you may have.");
+    server.on("/test", HTTP_GET, [](){
+    server.send(200, "text/plain", "This is a second subpage you may have.");
     });
-    server.onNotFound([](AsyncWebServerRequest *request){
-      if (!espalexa.handleAlexaApiCall(request)) //if you don't know the URI, ask espalexa whether it is an Alexa control request
+    server.onNotFound([](){
+      if (!espalexa.handleAlexaApiCall(server.uri(),server.arg(0))) //if you don't know the URI, ask espalexa whether it is an Alexa control request
       {
         //whatever you want to do with 404s
-        request->send(404, "text/plain", "Not found");
+        server.send(404, "text/plain", "Not found");
       }
     });
 
@@ -73,6 +71,7 @@ void setup()
  
 void loop()
 {
+   //server.handleClient() //you can omit this line from your code since it will be called in espalexa.loop()
    espalexa.loop();
    rollerBlinds1->loop();
 }
