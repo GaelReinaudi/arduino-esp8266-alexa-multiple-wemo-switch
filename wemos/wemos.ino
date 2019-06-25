@@ -54,7 +54,7 @@ void setup()
     });
 
     // Define your devices here.
-    espalexa.addDevice("livingroom blinds", firstLightChanged); //simplest definition, default state off
+    espalexa.addDevice("bedroom blinds", firstLightChanged); //simplest definition, default state off
 
     espalexa.begin(&server); //give espalexa a pointer to your server object so it can use your server instead of creating its own
     //server.begin(); //omit this since it will be done by espalexa.begin(&server)
@@ -86,15 +86,18 @@ void firstLightChanged(uint8_t brightness) {
     if (brightness == 255) {
       Serial.println("ON");
       Serial.println(brightness);
-      rollerBlinds1->goDown();
+      rollerBlinds1->moveToTop();
     }
     else if (brightness == 0) {
       Serial.println("OFF");
       Serial.println(brightness);
-      rollerBlinds1->goUp();
+      rollerBlinds1->moveToBot();
     }
     else {
       Serial.print("DIM "); Serial.println(brightness);
+      if (brightness == 128) {
+          rollerBlinds1->alreadyDown();
+      }
     }
 }
 

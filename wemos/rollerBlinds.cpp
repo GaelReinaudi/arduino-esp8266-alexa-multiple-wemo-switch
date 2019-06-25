@@ -1,13 +1,18 @@
 #include "rollerBlinds.h"
 
-  void RollerBlinds::goDown() {
+  void RollerBlinds::moveToTop() {
     stepper.enableOutputs();
     delay(100);
-    stepper.moveTo(posFullDown);
+    stepper.moveTo(posTop);
   }
 
-  void RollerBlinds::goUp() {
+  void RollerBlinds::moveToBot() {
     stepper.enableOutputs();
     delay(100);
-    stepper.moveTo(posFullUp);   
+    stepper.moveTo(posBot);   
+  }
+
+  void RollerBlinds::alreadyDown() {
+    posTop -= posBot;  
+    posBot -= posBot;  
   }
