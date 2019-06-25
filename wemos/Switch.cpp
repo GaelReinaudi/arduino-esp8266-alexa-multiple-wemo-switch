@@ -190,7 +190,7 @@ void Switch::respondToSearch(IPAddress& senderIP, unsigned int senderPort) {
        "01-NLS: b9200ebb-736d-4b93-bf03-835149d13983\r\n"
        "SERVER: Unspecified, UPnP/1.0, Unspecified\r\n"
        "ST: urn:Belkin:device:**\r\n"
-       "USN: uuid:" + persistent_uuid + "::urn:Belkin:device:**\r\n"
+       "USN: uuid:" + persistent_uuid + "::upnp:rootdevice\r\n"
        "X-User-Agent: redsonic\r\n\r\n";
 
   UDP.beginPacket(senderIP, senderPort);

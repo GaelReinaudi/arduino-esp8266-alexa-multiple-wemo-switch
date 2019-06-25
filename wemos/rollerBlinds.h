@@ -15,6 +15,7 @@ class RollerBlinds
   void loop() {
     //Serial.print(stepper.distanceToGo());
     if (stepper.distanceToGo() == 0) {
+      delay(100);
       stepper.disableOutputs();
     }
     else {
