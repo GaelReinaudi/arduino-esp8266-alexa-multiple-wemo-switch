@@ -16,6 +16,9 @@ void RollerBlinds::moveToBot()
 
 void RollerBlinds::alreadyDown()
 {
-    posTop -= posBot;
-    posBot -= posBot;
+    posTop -= posBot + 500;
+    posBot -= posBot + 500;
+    stepper.enableOutputs();
+    delay(100);
+    stepper.moveTo(posBot);
 }
